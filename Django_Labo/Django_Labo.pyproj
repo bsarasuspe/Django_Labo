@@ -30,6 +30,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="filmak\admin.py" />
+    <Compile Include="filmak\apps.py" />
+    <Compile Include="filmak\migrations\__init__.py" />
+    <Compile Include="filmak\models.py" />
+    <Compile Include="filmak\tests.py" />
+    <Compile Include="filmak\views.py" />
+    <Compile Include="filmak\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="Django_Labo\__init__.py" />
     <Compile Include="Django_Labo\settings.py" />
@@ -37,10 +44,15 @@
     <Compile Include="Django_Labo\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="filmak\templates\filmak\index.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Django_Labo\" />
+    <Folder Include="filmak\" />
+    <Folder Include="filmak\migrations\" />
+    <Folder Include="filmak\templates\" />
+    <Folder Include="filmak\templates\filmak\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
