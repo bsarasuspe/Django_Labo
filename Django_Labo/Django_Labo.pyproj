@@ -35,6 +35,9 @@
     <Compile Include="filmak\migrations\__init__.py" />
     <Compile Include="filmak\models.py" />
     <Compile Include="filmak\tests.py" />
+    <Compile Include="filmak\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="filmak\views.py" />
     <Compile Include="filmak\__init__.py" />
     <Compile Include="manage.py" />

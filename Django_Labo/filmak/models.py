@@ -15,7 +15,7 @@ class Filma(models.Model):
 
 
 class Bozkatzailea(models.Model):
-	erabiltzailea_id = models.ForeignKey(User)
+	erabiltzailea_id = models.ForeignKey(User, on_delete=models.CASCADE)
 	gogokofilmak = models.ManyToManyField(Filma)
 
 	def __unicode__(self):
