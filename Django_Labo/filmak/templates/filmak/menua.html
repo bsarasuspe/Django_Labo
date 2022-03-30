@@ -3,9 +3,16 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>{{menua}}</title>
+    <title>{{title}}</title>
 </head>
 <body>
-
+    <h1>Filmen gunea</h1>
+    <h3>Aukerak</h3>
+    <ul>
+        <li><a href="">Filmak ikusi</a></li>
+        <li><a href="{% url 'bozkatu' %}">Bozkatu</a></li>
+        <li><a href="{% url 'zaleak' %}">Zaleak</a></li>
+    </ul>
+    <a href="{% url 'index' %}">ATERA SAIOTIK</a>
 </body>
 </html>
