@@ -53,6 +53,7 @@
     <Content Include="filmak\templates\filmak\logout.html" />
     <Content Include="filmak\templates\filmak\menua.html" />
     <Content Include="filmak\templates\filmak\register.html" />
+    <Content Include="filmak\templates\filmak\filmakIkusi.html" />
     <Content Include="filmak\templates\filmak\zaleak.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
