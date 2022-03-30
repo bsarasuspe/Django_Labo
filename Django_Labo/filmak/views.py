@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+from django import forms
 
 def index(request):
 
@@ -14,11 +15,14 @@ def index(request):
 
 def login(request):
 
+    form = LoginForm()
+
     return render(request, "filmak/login.html",
                   {
                       'title' : "Login - Filmak",
                       'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
+                      'content' : "Hello, world. You're at the polls index.",
+                      'form' : form
                       }
                   )
 
@@ -71,3 +75,7 @@ def zaleak(request):
                       'content' : "Hello, world. You're at the polls index."
                       }
                   )
+
+class LoginForm(forms.Form): #Manualki login formularioa
+    erabiltzailea = forms.CharField(max_length=100, required=True) #Erabiltzaile izena
+    pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
