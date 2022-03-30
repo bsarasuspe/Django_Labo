@@ -47,9 +47,13 @@
     <Compile Include="Django_Labo\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="filmak\templates\filmak\bozkatu.html" />
     <Content Include="filmak\templates\filmak\index.html" />
     <Content Include="filmak\templates\filmak\login.html" />
+    <Content Include="filmak\templates\filmak\logout.html" />
+    <Content Include="filmak\templates\filmak\menua.html" />
     <Content Include="filmak\templates\filmak\register.html" />
+    <Content Include="filmak\templates\filmak\zaleak.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
