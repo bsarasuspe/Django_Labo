@@ -6,9 +6,11 @@
 <body>
     <center>
         <h2>LOGIN</h2>
-        <form action="/your-name/" method="post">
-        {{form}}
-        <input type="submit" value="Logeatu">
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="{{ form.erabiltzailea.id_for_label }}">Erabiltzailea:</label>{{form.erabiltzailea}}<br />
+            <label for="{{ form.pasahitza.id_for_label }}">Pasahitza:</label>{{form.pasahitza}}<br /><br />
+            <input type="submit" value="Logeatu">
         </form>
     </center>
 </body>
