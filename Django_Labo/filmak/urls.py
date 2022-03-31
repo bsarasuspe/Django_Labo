@@ -8,6 +8,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('logout', views.logout, name='logout'),
     path('menua', views.menua, name='menua'),
+    path('filmakIkusi', views.filmakIkusi, name='filmakIkusi'),
     path('bozkatu', views.bozkatu, name='bozkatu'),
     path('zaleak', views.zaleak, name='zaleak'),
 ]
