@@ -50,7 +50,6 @@
     <Content Include="filmak\templates\filmak\bozkatu.html" />
     <Content Include="filmak\templates\filmak\index.html" />
     <Content Include="filmak\templates\filmak\login.html" />
-    <Content Include="filmak\templates\filmak\logout.html" />
     <Content Include="filmak\templates\filmak\menua.html" />
     <Content Include="filmak\templates\filmak\register.html" />
     <Content Include="filmak\templates\filmak\filmakIkusi.html" />

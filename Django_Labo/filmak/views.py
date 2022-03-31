@@ -84,11 +84,6 @@ def register(request):
                           }
                       )
 
-def logout(request):
-
-    logout(request)
-    return HttpResponseRedirect('index')
-
 def menua(request):
 
     return render(request, "filmak/menua.html",
