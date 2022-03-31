@@ -6,6 +6,15 @@
 <body>
     <center>
         <h2>REGISTER</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <b><label for="{{ form.erabiltzailea.id_for_label }}">Erabiltzailea: </label></b>{{form.erabiltzailea}}<br />
+            <b><label for="{{ form.eposta.id_for_label }}">Eposta: </label></b>{{form.eposta}}<br />
+            <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b>{{form.pasahitza}}<br /><br />
+            <input type="submit" value="Erregistratu">
+        </form>
+        <p style="color:red;"><b>{{message}}</b></p>
+        Dagoeneko kontu bat baduzu, logeatu <a href="{% url 'login' %}">hemen</a>.
     </center>
 </body>
 </html>
