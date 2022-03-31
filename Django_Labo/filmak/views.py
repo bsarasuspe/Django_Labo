@@ -4,6 +4,7 @@ from datetime import datetime
 from django import forms
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 def index(request):
 
@@ -31,28 +32,22 @@ def login(request):
                 return render(request, "filmak/login.html",
                 {
                     'title' : "Login - Filmak",
-                    'message' : "Hello Django!",
-                    'content' : "Hello, world. You're at the polls index.",
                     'form' : form,
-                    'error' : "Kontua desgaituta."
+                    'message' : "Kontua desgaituta."
                     }
                 )
         else:
             return render(request, "filmak/login.html",
             {
                 'title' : "Login - Filmak",
-                'message' : "Hello Django!",
-                'content' : "Hello, world. You're at the polls index.",
                 'form' : form,
-                'error' : "Login desegokia."
+                'message' : "Login desegokia."
                 }
             )
     else:
         return render(request, "filmak/login.html",
                       {
                           'title' : "Login - Filmak",
-                          'message' : "Hello Django!",
-                          'content' : "Hello, world. You're at the polls index.",
                           'form' : form
                           }
                       )
@@ -63,12 +58,28 @@ def register(request):
         erabiltzailea = request.POST['erabiltzailea']
         eposta = request.POST['eposta']
         pasahitza = request.POST['pasahitza']
+        try:
+            erab = User.objects.create_user(erabiltzailea, eposta, pasahitza)
+        except:
+            return render(request, "filmak/register.html",
+            {
+                'title' : "Register - Filmak",
+                'message' : "Erabiltzaile izen hori dagoeneko erregistratuta dago.",
+                'form' : form
+                }
+            )
+        else:
+            return render(request, "filmak/register.html",
+            {
+                'title' : "Register - Filmak",
+                'message' : "Ongi erregistratu zara!",
+                'form' : form
+                }
+            )
     else:
         return render(request, "filmak/register.html",
                       {
                           'title' : "Register - Filmak",
-                          'message' : "Hello Django!",
-                          'content' : "Hello, world. You're at the polls index.",
                           'form' : form
                           }
                       )
@@ -83,8 +94,6 @@ def menua(request):
     return render(request, "filmak/menua.html",
                   {
                       'title' : "Menua - Filmak",
-                      'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
                       }
                   )
 
@@ -93,8 +102,6 @@ def bozkatu(request):
     return render(request, "filmak/bozkatu.html",
                   {
                       'title' : "Bozkatu - Filmak",
-                      'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
                       }
                   )
 
@@ -103,8 +110,6 @@ def zaleak(request):
     return render(request, "filmak/zaleak.html",
                   {
                       'title' : "Zaleak - Filmak",
-                      'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
                       }
                   )
 

@@ -12,7 +12,8 @@
             <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b>{{form.pasahitza}}<br /><br />
             <input type="submit" value="Logeatu">
         </form>
-        <p style="color:red;"><b>{{error}}</b></p>
+        <p style="color:red;"><b>{{message}}</b></p>
+        Konturik ez baduzu, erregistratu zaitez <a href="{% url 'register' %}">hemen</a>.
     </center>
 </body>
 </html>
