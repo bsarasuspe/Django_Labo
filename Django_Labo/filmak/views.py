@@ -56,6 +56,16 @@ def menua(request):
                       }
                   )
 
+def filmakIkusi(request):
+
+    return render(request, "filmak/filmakIkusi.html",
+                  {
+                      'title' : "Menua - Filmak",
+                      'message' : "Hello Django!",
+                      'content' : "Hello, world. You're at the polls index."
+                      }
+                  )
+
 def bozkatu(request):
 
     return render(request, "filmak/bozkatu.html",
