@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from datetime import datetime
 from django import forms
 from django.contrib.auth import authenticate, login as auth_login
+from django.http import HttpResponseRedirect
 
 def index(request):
 
@@ -15,6 +16,7 @@ def index(request):
                   )
 
 def login(request):
+    form = LoginForm()
     if request.method == 'POST':
         erabiltzailea = request.POST['erabiltzailea']
         pasahitza = request.POST['pasahitza']
@@ -23,22 +25,29 @@ def login(request):
             if user.is_active:
                 auth_login(request, user)
                 # Berbideratu login ondorengo orri batera.
-                return HttpResponseRedirect('menua.html')
+                return HttpResponseRedirect('menua')
             else:
                 # Errore-mezua bueltatu: 'kontua desgaituta'.
                 return render(request, "filmak/login.html",
                 {
+                    'title' : "Login - Filmak",
+                    'message' : "Hello Django!",
+                    'content' : "Hello, world. You're at the polls index.",
+                    'form' : form,
                     'error' : "Kontua desgaituta."
                     }
                 )
         else:
             return render(request, "filmak/login.html",
             {
+                'title' : "Login - Filmak",
+                'message' : "Hello Django!",
+                'content' : "Hello, world. You're at the polls index.",
+                'form' : form,
                 'error' : "Login desegokia."
                 }
             )
     else:
-        form = LoginForm()
         return render(request, "filmak/login.html",
                       {
                           'title' : "Login - Filmak",
@@ -49,15 +58,12 @@ def login(request):
                       )
 
 def register(request):
+    form = RegisterForm()
     if request.method == 'POST':
-        form = NameForm(request.POST)
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+        erabiltzailea = request.POST['erabiltzailea']
+        eposta = request.POST['eposta']
+        pasahitza = request.POST['pasahitza']
     else:
-        form = RegisterForm()
         return render(request, "filmak/register.html",
                       {
                           'title' : "Register - Filmak",
@@ -69,13 +75,8 @@ def register(request):
 
 def logout(request):
 
-    return render(request, "filmak/logout.html",
-                  {
-                      'title' : "Logout - Filmak",
-                      'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
-                      }
-                  )
+    logout(request)
+    return HttpResponseRedirect('index')
 
 def menua(request):
 
@@ -113,4 +114,5 @@ class LoginForm(forms.Form): #Manualki login formularioa
 
 class RegisterForm(forms.Form): #Manualki login formularioa
     erabiltzailea = forms.CharField(max_length=100, required=True) #Erabiltzaile izena
+    eposta = forms.CharField(widget=forms.EmailInput, max_length=100, required=True) #Eposta
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
