@@ -144,9 +144,12 @@ def bozkatu(request):
 
 def zaleak(request):
 
+    filmak = Filma.objects.all()
+
     return render(request, "filmak/zaleak.html",
                   {
                       'title' : "Zaleak - Filmak",
+                      'filmak' : filmak
                       }
                   )
 

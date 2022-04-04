@@ -3,9 +3,16 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>{{zaleak}}</title>
+    <title>{{title}}</title>
 </head>
 <body>
-
+    <h1 style="color:green">Zaleak</h1>
+    <form>
+        <select name="filmak" id="filmak">
+            {% for film in content %}
+            <option value="{{ film.izenburua }}">{{ film.izenburua }}</option>
+            {% endfor %}
+        </select>
+    </form>
 </body>
 </html>
