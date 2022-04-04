@@ -7,6 +7,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as logout
 
+from Django_Labo.filmak.models import Filma
+
 def index(request):
 
     return render(request, "filmak/index.html",
@@ -99,9 +101,11 @@ def logout(request):
 
 def filmakIkusi(request):
 
+    taula = taulaFilmak()
     return render(request, "filmak/filmakIkusi.html",
                   {
                       'title' : "Menua - Filmak",
+                      'content' : taula
                       }
                   )
 
@@ -129,3 +133,6 @@ class RegisterForm(forms.Form): #Manualki login formularioa
     erabiltzailea = forms.CharField(max_length=100, required=True) #Erabiltzaile izena
     eposta = forms.CharField(widget=forms.EmailInput, max_length=100, required=True) #Eposta
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
+
+class taulaFilmak():
+    taula = Filma.objects.all()
