@@ -59,24 +59,34 @@ def register(request):
     if request.method == 'POST':
         erabiltzailea = request.POST['erabiltzailea']
         pasahitza = request.POST['pasahitza']
-        try:
-            erab = User.objects.create_user(erabiltzailea, eposta, pasahitza)
-        except:
-            return render(request, "filmak/register.html",
-            {
-                'title' : "Register - Filmak",
-                'message' : "Erabiltzaile izen hori dagoeneko erregistratuta dago.",
-                'form' : form
-                }
-            )
+        pasahitza2 = request.POST['pasahitza2']
+        if (pasahitza == pasahitza2):
+            try:
+                erab = User.objects.create_user(username=erabiltzailea, password=pasahitza)
+            except:
+                return render(request, "filmak/register.html",
+                {
+                    'title' : "Register - Filmak",
+                    'message' : "Erabiltzaile izen hori dagoeneko erregistratuta dago.",
+                    'form' : form
+                    }
+                )
+            else:
+                return render(request, "filmak/register.html",
+                {
+                    'title' : "Register - Filmak",
+                    'message' : "Ongi erregistratu zara!",
+                    'form' : form
+                    }
+                )
         else:
             return render(request, "filmak/register.html",
-            {
-                'title' : "Register - Filmak",
-                'message' : "Ongi erregistratu zara!",
-                'form' : form
-                }
-            )
+                      {
+                          'title' : "Register - Filmak",
+                          'message' : "Pasahitzak ez dira berdinak!",
+                          'form' : form
+                          }
+                      )
     else:
         return render(request, "filmak/register.html",
                       {
@@ -142,8 +152,8 @@ class LoginForm(forms.Form): #Manualki login formularioa
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
 
 class RegisterForm(forms.Form): #Manualki login formularioa
-    erabiltzailea = forms.CharField(max_length=100, required=True) #erabiltzaile izena
-    pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #pasahitza
-    errepPasahitza = forms.CharField(widget=forms.PasswordInput, max_length=100, required=True) #errepikatu pasahitza
+    erabiltzailea = forms.CharField(max_length=100, required=True) #Erabiltzaile izena
+    pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
+    pasahitza2 = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
 
     
