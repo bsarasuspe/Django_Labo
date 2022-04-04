@@ -10,5 +10,5 @@ urlpatterns = [
     path('filmakIkusi', views.filmakIkusi, name='filmakIkusi'),
     path('bozkatu', views.bozkatu, name='bozkatu'),
     path('zaleak', views.zaleak, name='zaleak'),
-    path('logout', views.logout, name='logout'),
+    path('', views.logout, name='logout'),
 ]
