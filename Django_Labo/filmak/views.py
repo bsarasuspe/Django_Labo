@@ -103,12 +103,22 @@ def logout(request):
 def filmakIkusi(request):
 
     filmak = Filma.objects.all()
-    paginator = Paginator(filmak, 5) 
+    paginator = Paginator(filmak, 4) #taulan aldi berean gehienez 4 film erakusteko.
+
+    page = request.GET.get('page') #filmakIkusi.html-k eskatutako orriaren zenbakia jasotzen du.
+
+    try:
+        filmList = paginator.page(page)
+    except PageNotAnInteger: #jasotako "page" ez bada Integer bat, lehenengo orria itzuliko da.
+        filmList = paginator.page(1)
+    except EmptyPage: #jasotako "page" filmen orri kopurua baino handiagoa bada, azken orria itzuliko da.
+        filmList = paginator.page(paginator.num_pages)
+
 
     return render(request, "filmak/filmakIkusi.html",
                   {
                       'title' : "Menua - Filmak",
-                      'content' : paginator.page(1)
+                      'content' : filmList
                       }
                   )
 
