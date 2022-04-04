@@ -96,7 +96,7 @@ def menua(request):
 
 def filmakIkusi(request):
 
-    taula = taulaLortu()
+    taula = taulaFilmak()
     return render(request, "filmak/filmakIkusi.html",
                   {
                       'title' : "Menua - Filmak",
@@ -129,5 +129,5 @@ class RegisterForm(forms.Form): #Manualki login formularioa
     eposta = forms.CharField(widget=forms.EmailInput, max_length=100, required=True) #Eposta
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
 
-class taulaLortu():
-    taula = 0
+class taulaFilmak():
+    taula = Filma.objects.all()

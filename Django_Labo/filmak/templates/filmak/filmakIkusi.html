@@ -10,7 +10,9 @@
 
     <table id="filmTaula">
         <tr><td>Izenburua</td><td>Zuzendaria</td><td>Urtea</td><td>Generoa</td><td>Sinopsia</td><td>Bozkak</td></tr>
-        {% block content %}{% endblock %}
+        {% for film in content %}
+        <tr><td>{{ film.izenburua }}</td><td>{{ film.zuzendaria }}</td><td>{{ film.urtea }}</td><td>{{ film.generoa }}</td><td>{{ film.sinopsia }}</td><td>{{ film.bozkak }}</td></tr>
+        {% endfor %}
     </table>
 </body>
 </html>
