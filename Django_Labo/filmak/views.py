@@ -96,11 +96,13 @@ def menua(request):
 
 def filmakIkusi(request):
 
-    taula = taulaFilmak()
+    filmak = Filma.objects.all()
+    paginator = Paginator(filmak, 5) 
+
     return render(request, "filmak/filmakIkusi.html",
                   {
                       'title' : "Menua - Filmak",
-                      'content' : taula
+                      'content' = paginator.page(1)
                       }
                   )
 
@@ -129,5 +131,4 @@ class RegisterForm(forms.Form): #Manualki login formularioa
     eposta = forms.CharField(widget=forms.EmailInput, max_length=100, required=True) #Eposta
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
 
-class taulaFilmak():
-    taula = Filma.objects.all()
+    
