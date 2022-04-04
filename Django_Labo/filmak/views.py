@@ -58,7 +58,6 @@ def register(request):
     form = RegisterForm()
     if request.method == 'POST':
         erabiltzailea = request.POST['erabiltzailea']
-        eposta = request.POST['eposta']
         pasahitza = request.POST['pasahitza']
         try:
             erab = User.objects.create_user(erabiltzailea, eposta, pasahitza)
