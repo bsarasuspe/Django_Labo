@@ -123,9 +123,12 @@ def filmakIkusi(request):
 
 def bozkatu(request):
 
+    filmak = Filma.objects.all()
+
     return render(request, "filmak/bozkatu.html",
                   {
                       'title' : "Bozkatu - Filmak",
+                      'filmak'  filmak
                       }
                   )
 
