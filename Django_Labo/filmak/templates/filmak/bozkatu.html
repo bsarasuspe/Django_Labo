@@ -9,10 +9,8 @@
     <h1 style="color:green">Bozkatu zure gogoko pelikula</h1>
     <form>
         <select name="filmak" id="filmak">
-            {% i = 0 %}
             {% for film in content %}
-            <option value="{{ i }}">{{ film.izenburua }}</option>
-            {% i++ %}
+            <option value="{{ film.izenburua }}">{{ film.izenburua }}</option>
             {% endfor %}
         </select>
     </form>

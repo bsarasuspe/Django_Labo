@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required as login_required
 
 from filmak.models import Filma
 
@@ -95,6 +96,7 @@ def register(request):
                           }
                       )
 
+@login_required(login_url='')
 def menua(request):
 
     return render(request, "filmak/menua.html",
@@ -103,12 +105,18 @@ def menua(request):
                       }
                   )
 
+@login_required(login_url='')
 def logout(request):
 
     logout(request)
-    return HttpResponseRedirect('')
+    return render(request, "filmak/index.html",
+                  {
+                      'title' : "Filmak",
+                      }
+                  )
+    #return HttpResponseRedirect('')
 
-
+@login_required(login_url='')
 def filmakIkusi(request):
 
     filmak = Filma.objects.all()
@@ -131,6 +139,7 @@ def filmakIkusi(request):
                       }
                   )
 
+@login_required(login_url='')
 def bozkatu(request):
 
     filmak = Filma.objects.all()
@@ -138,10 +147,11 @@ def bozkatu(request):
     return render(request, "filmak/bozkatu.html",
                   {
                       'title' : "Bozkatu - Filmak",
-                      'filmak'  filmak
+                      'filmak' : filmak
                       }
                   )
 
+@login_required(login_url='')
 def zaleak(request):
 
     filmak = Filma.objects.all()
