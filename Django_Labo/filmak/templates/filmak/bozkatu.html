@@ -6,6 +6,17 @@
     <title>{{title}}</title>
 </head>
 <body>
+    <h1 style="color:green">Bozkatu zure gogoko pelikula</h1>
+    <form>
+        <select name="filmak" id="filmak">
+            {% i = 0 %}
+            {% for film in content %}
+            <option value="{{ i }}">{{ film.izenburua }}</option>
+            {% i++ %}
+            {% endfor %}
+        </select>
+    </form>
+    
 
 </body>
 </html>
