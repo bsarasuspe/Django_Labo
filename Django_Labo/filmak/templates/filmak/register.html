@@ -9,8 +9,8 @@
         <form action="" method="post">
             {% csrf_token %}
             <b><label for="{{ form.erabiltzailea.id_for_label }}">Erabiltzailea: </label></b>{{form.erabiltzailea}}<br />
-            <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b>{{form.pasahitza}}<br /><br />
-            <b><label for="{{ form.errepPasahitza.id_for_label }}">Eposta: </label></b>{{form.errepPasahitza}}<br />
+            <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b>{{form.pasahitza}}<br />
+            <b><label for="{{ form.errepPasahitza.id_for_label }}">Errepikatu pasahitza: </label></b>{{form.errepPasahitza}}<br /><br />
             <input type="submit" value="Erregistratu">
         </form>
         <p style="color:red;"><b>{{message}}</b></p>
