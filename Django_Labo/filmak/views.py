@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth import logout as logout
 
 from Django_Labo.filmak.models import Filma
 
@@ -13,8 +14,6 @@ def index(request):
     return render(request, "filmak/index.html",
                   {
                       'title' : "Filmak",
-                      'message' : "Hello Django!",
-                      'content' : "Hello, world. You're at the polls index."
                       }
                   )
 
@@ -93,6 +92,12 @@ def menua(request):
                       'title' : "Menua - Filmak",
                       }
                   )
+
+def logout(request):
+
+    #logout(request)
+    return HttpResponseRedirect('')
+
 
 def filmakIkusi(request):
 
