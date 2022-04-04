@@ -86,11 +86,6 @@ def register(request):
                           }
                       )
 
-def logout(request):
-
-    logout(request)
-    return HttpResponseRedirect('index')
-
 def menua(request):
 
     return render(request, "filmak/menua.html",
@@ -135,4 +130,4 @@ class RegisterForm(forms.Form): #Manualki login formularioa
     pasahitza = forms.CharField(widget=forms.PasswordInput, required=True) #defektuz required beti da TRUE
 
 class taulaLortu():
-    
+    taula = 0
