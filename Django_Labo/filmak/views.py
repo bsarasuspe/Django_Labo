@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as logout
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from filmak.models import Filma
 
@@ -107,7 +108,7 @@ def filmakIkusi(request):
     return render(request, "filmak/filmakIkusi.html",
                   {
                       'title' : "Menua - Filmak",
-                      'content' = paginator.page(1)
+                      'content' : paginator.page(1)
                       }
                   )
 
