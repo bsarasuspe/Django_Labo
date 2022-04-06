@@ -5,6 +5,7 @@ from django import forms
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.contrib.auth import logout as logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required as login_required
@@ -25,6 +26,7 @@ def login(request):
         erabiltzailea = request.POST['erabiltzailea']
         pasahitza = request.POST['pasahitza']
         user = authenticate(username=erabiltzailea, password=pasahitza)
+        request.session['user'] = user
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
@@ -109,12 +111,7 @@ def menua(request):
 def logout(request):
 
     logout(request)
-    return render(request, "filmak/index.html",
-                  {
-                      'title' : "Filmak",
-                      }
-                  )
-    #return HttpResponseRedirect('')
+    return redirect('index')
 
 @login_required(login_url='')
 def filmakIkusi(request):
