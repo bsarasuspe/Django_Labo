@@ -153,13 +153,14 @@ def bozkatu(request):
                       'mezua2' : "Zure bozka: " + aukera,
                       }
                   )
-        except: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
+        except Exception as e: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
             return render(request, "filmak/bozkatu.html",
                     {
                         'title' : "Register - Filmak",
                         'filmak' : filmak,
                         'mezua1' : aukera + " jada bozkatu duzu!",
-                        'mezua2' : ""
+                        'mezua2' : "",
+                        'error' : e
                         }
                     )
         
