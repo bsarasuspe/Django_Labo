@@ -191,8 +191,8 @@ def zaleak(request):
                       {
                           'title' : "Register - Filmak",
                           'filmak' : filmak,
-                          'mezua' : aukera + "-ren zaleak:"
-                          'content' : 
+                          'mezua' : aukera + "-ren zaleak:",
+                          'content' : zaleak
                           }
                     )
     return render(request, "filmak/zaleak.html",
