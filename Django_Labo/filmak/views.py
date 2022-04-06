@@ -144,7 +144,8 @@ def bozkatu(request):
         aukera = request.POST['filmak']
         try:
             filmAuk = filmak.get(aukera)
-            Bozkatzailea.objects.create(,filmAuk) #Bozkatzailea sortzen saiatzen da.
+            erabiltzailea = request.session['user']
+            Bozkatzailea.objects.create(erabiltzailea,filmAuk) #Bozkatzailea sortzen saiatzen da.
             filmAuk.bozkak++ #Bozka kopurua eguneratzen da.
             return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
                   {
