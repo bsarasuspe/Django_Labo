@@ -8,6 +8,7 @@
 <body>
     <h1 style="color:green">Bozkatu zure gogoko pelikula</h1>
     <form action="" method="post">
+        {% csrf_token %}
         <select name="filmak" id="filmak">
             {% for film in filmak %}
             <option value="{{ film.izenburua }}">{{ film.izenburua }}</option>
@@ -15,7 +16,9 @@
         </select>
         <input type="submit" value="Bozkatu">
     </form>
-    
+    <b>{{mezua1}}</b>
+    <b>{{mezua2}}</b>
+
 
 </body>
 </html>
