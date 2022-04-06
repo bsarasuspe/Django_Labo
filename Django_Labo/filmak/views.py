@@ -143,13 +143,27 @@ def filmakIkusi(request):
 def bozkatu(request):
 
     filmak = Filma.objects.all()
-
-    return render(request, "filmak/bozkatu.html",
+    if request.method == 'POST':
+        aukera = request.POST['filmak']
+        return render(request, "filmak/bozkatu.html",
                   {
                       'title' : "Bozkatu - Filmak",
-                      'filmak' : filmak
+                      'filmak' : filmak,
+                      'mezua1' : "Bozkaketa ongi burutu da",
+                      'mezua2' : "Zure bozka: " + aukera,
                       }
                   )
+    else:
+        return render(request, "filmak/bozkatu.html",
+                  {
+                      'title' : "Bozkatu - Filmak",
+                      'filmak' : filmak,
+                      }
+                  )
+
+        
+    
+    
 
 @login_required(login_url='')
 def zaleak(request):

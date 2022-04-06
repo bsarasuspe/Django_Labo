@@ -7,12 +7,13 @@
 </head>
 <body>
     <h1 style="color:green">Zaleak</h1>
-    <form>
+    <form action="" method="post">
         <select name="filmak" id="filmak">
             {% for film in filmak %}
             <option value="{{ film.izenburua }}">{{ film.izenburua }}</option>
             {% endfor %}
         </select>
+        <input type="submit" value="Erakutsi zaleak">
     </form>
 </body>
 </html>
