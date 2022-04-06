@@ -19,4 +19,4 @@ class Bozkatzailea(models.Model):
 	gogokofilmak = models.ManyToManyField(Filma)
 
 	def __unicode__(self):
-		return unicode(self.erabiltzailea_id)
+		return self.erabiltzailea_id

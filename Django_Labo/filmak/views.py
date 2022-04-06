@@ -9,7 +9,7 @@ from django.contrib.auth import logout as logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required as login_required
 
-from filmak.models import Filma
+from filmak.models import Bozkatzailea, Filma
 
 def index(request):
 
@@ -143,9 +143,13 @@ def filmakIkusi(request):
 def bozkatu(request):
 
     filmak = Filma.objects.all()
-    if request.method == 'POST':
+    if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
-        return render(request, "filmak/bozkatu.html",
+        try:
+            filmAuk = filmak.get(aukera)
+            Bozkatzailea.objects.create(,filmAuk) #Bozkatzailea sortzen saiatzen da.
+            filmAuk.bozkak++ #Bozka kopurua eguneratzen da.
+            return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
                   {
                       'title' : "Bozkatu - Filmak",
                       'filmak' : filmak,
@@ -153,7 +157,17 @@ def bozkatu(request):
                       'mezua2' : "Zure bozka: " + aukera,
                       }
                   )
-    else:
+            except: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
+                return render(request, "filmak/bozkatu.html",
+                    {
+                        'title' : "Register - Filmak",
+                        'filmak' : filmak,
+                        'mezua1' : aukera + " jada bozkatu duzu!"
+                        'mezua2' : ""
+                        }
+                    )
+        
+    else: #Form-a ez bada bete (orria lehen aldi kargatzean, adibidez), hemendik joango da.
         return render(request, "filmak/bozkatu.html",
                   {
                       'title' : "Bozkatu - Filmak",
@@ -169,7 +183,18 @@ def bozkatu(request):
 def zaleak(request):
 
     filmak = Filma.objects.all()
-
+    if request.method == 'POST': #Form-a bete bada hemendik joango da.
+        aukera = request.POST['filmak']
+        filmAuk = filmak.get(aukera)
+        zaleak = Bozkatzailea.objects.all()
+        return render(request, "filmak/zaleak.html",
+                      {
+                          'title' : "Register - Filmak",
+                          'filmak' : filmak,
+                          'mezua' : aukera + "-ren zaleak:"
+                          'content' : 
+                          }
+                    )
     return render(request, "filmak/zaleak.html",
                   {
                       'title' : "Zaleak - Filmak",

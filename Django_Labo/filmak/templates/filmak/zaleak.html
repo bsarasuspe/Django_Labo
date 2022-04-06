@@ -16,5 +16,13 @@
         </select>
         <input type="submit" value="Erakutsi zaleak">
     </form>
+    <b>{{mezua}}</b><br />
+
+    <table id="zaleTaula">
+        <tr><td>Zaleak</td></tr>
+        {% for zalea in content %}
+        <tr><td>{{ zalea.erabiltzailea_id.username }}</td></tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
