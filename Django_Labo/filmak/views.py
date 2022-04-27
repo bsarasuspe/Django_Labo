@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.contrib.auth import logout as logout
+from django.contrib.auth import logout as auth_logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required as login_required
 
@@ -108,9 +108,8 @@ def menua(request):
 
 @login_required(login_url='')
 def logout(request):
-
-    #logout(request)
-    #return redirect('index')
+    
+    auth_logout(request)
     return render(request, 'filmak/index.html')
 
 @login_required(login_url='')
