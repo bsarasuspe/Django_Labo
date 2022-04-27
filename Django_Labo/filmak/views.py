@@ -109,8 +109,9 @@ def menua(request):
 @login_required(login_url='')
 def logout(request):
 
-    logout(request)
-    return redirect('index')
+    #logout(request)
+    #return redirect('index')
+    return render(request, 'filmak/index.html')
 
 @login_required(login_url='')
 def filmakIkusi(request):
