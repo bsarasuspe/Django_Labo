@@ -194,7 +194,7 @@ def zaleak(request):
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
         filmAuk = Filma.objects.get(izenburua=aukera)
-        zaleak = Bozkatzailea.objects.all()
+        zaleak = Bozkatzailea.objects.filter(gogokofilmak__izenburua=aukera)
 
         return render(request, "filmak/zaleak.html",
                       {
