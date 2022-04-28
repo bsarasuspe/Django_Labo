@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.contrib.auth import logout as logout
+from django.contrib.auth import logout as auth_logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required as login_required
 
@@ -26,7 +26,6 @@ def login(request):
         erabiltzailea = request.POST['erabiltzailea']
         pasahitza = request.POST['pasahitza']
         user = authenticate(username=erabiltzailea, password=pasahitza)
-        request.session['user'] = user
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
@@ -109,9 +108,9 @@ def menua(request):
 
 @login_required(login_url='')
 def logout(request):
-
-    logout(request)
-    return redirect('index')
+    
+    auth_logout(request)
+    return render(request, 'filmak/index.html')
 
 @login_required(login_url='')
 def filmakIkusi(request):
@@ -138,15 +137,14 @@ def filmakIkusi(request):
 
 @login_required(login_url='')
 def bozkatu(request):
-
     filmak = Filma.objects.all()
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
         try:
             filmAuk = filmak.get(aukera)
-            erabiltzailea = request.User
+            erabiltzailea = request.session['user']
             Bozkatzailea.objects.create(erabiltzailea,filmAuk) #Bozkatzailea sortzen saiatzen da.
-            filmAuk.bozkak++ #Bozka kopurua eguneratzen da.
+            filmAuk.bozkak = filmAuk.bozkak + 1 #Bozka kopurua eguneratzen da.
             return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
                   {
                       'title' : "Bozkatu - Filmak",
@@ -155,13 +153,14 @@ def bozkatu(request):
                       'mezua2' : "Zure bozka: " + aukera,
                       }
                   )
-            except: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
-                return render(request, "filmak/bozkatu.html",
+        except Exception as e: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
+            return render(request, "filmak/bozkatu.html",
                     {
                         'title' : "Register - Filmak",
                         'filmak' : filmak,
-                        'mezua1' : aukera + " jada bozkatu duzu!"
-                        'mezua2' : ""
+                        'mezua1' : aukera + " jada bozkatu duzu!",
+                        'mezua2' : "",
+                        'error' : e
                         }
                     )
         
@@ -172,10 +171,6 @@ def bozkatu(request):
                       'filmak' : filmak,
                       }
                   )
-
-        
-    
-    
 
 @login_required(login_url='')
 def zaleak(request):
