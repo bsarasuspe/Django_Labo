@@ -141,9 +141,13 @@ def bozkatu(request):
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
         try:
-            filmAuk = filmak.get(aukera)
-            erabiltzailea = request.User
-            Bozkatzailea.objects.create(erabiltzailea, filmAuk) #Bozkatzailea sortzen saiatzen da.
+            filmAuk = Filma.objects.get(izenburua=aukera)
+            erabiltzailea = request.user
+            instance = Bozkatzailea.objects.create(erabiltzailea_id=erabiltzailea) #Bozkatzailea sortzen saiatzen da.
+            bozkatutakoak = []
+            bozkatutakoak = Bozkatzailea.objects.get(erabiltzailea_id=erabiltzailea).values(gogokofilmak)
+            bozkatutakoak.append(filmAuk)
+            instance.gogokofilmak.set(bozkatutakoak)
             filmAuk.bozkak = filmAuk.bozkak + 1 #Bozka kopurua eguneratzen da.
             return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
                   {
@@ -177,7 +181,7 @@ def zaleak(request):
     filmak = Filma.objects.all()
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
-        filmAuk = filmak.get(aukera)
+        filmAuk = Filma.objects.get(izenburua=aukera)
         zaleak = Bozkatzailea.objects.all()
 
         return render(request, "filmak/zaleak.html",
