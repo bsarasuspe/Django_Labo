@@ -140,34 +140,46 @@ def bozkatu(request):
     filmak = Filma.objects.all()
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
-        try:
-            filmAuk = Filma.objects.get(izenburua=aukera)
-            erabiltzailea = request.user
-            instance = Bozkatzailea.objects.create(erabiltzailea_id=erabiltzailea) #Bozkatzailea sortzen saiatzen da.
-            bozkatutakoak = []
-            bozkatutakoak = Bozkatzailea.objects.get(erabiltzailea_id=erabiltzailea).values(gogokofilmak)
-            bozkatutakoak.append(filmAuk)
-            instance.gogokofilmak.set(bozkatutakoak)
-            filmAuk.bozkak = filmAuk.bozkak + 1 #Bozka kopurua eguneratzen da.
-            return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
-                  {
-                      'title' : "Bozkatu - Filmak",
-                      'filmak' : filmak,
-                      'mezua1' : "Bozkaketa ongi burutu da",
-                      'mezua2' : "Zure bozka: " + aukera,
-                      }
-                  )
-        except Exception as e: #Film berdina behin baino gehiagotan bozkatzen saiatu da.
-            return render(request, "filmak/bozkatu.html",
+        filmAuk = Filma.objects.get(izenburua=aukera)
+        erabiltzailea = request.user
+        if Bozkatzailea.objects.filter(erabiltzailea_id=erabiltzailea).exists():
+            bozkatzailea = Bozkatzailea.objects.get(erabiltzailea_id=erabiltzailea)
+            if bozkatzailea.gogokofilmak.filter(izenburua=aukera).exists():
+                return render(request, "filmak/bozkatu.html",
+                        {
+                            'title' : "Register - Filmak",
+                            'filmak' : filmak,
+                            'mezua1' : aukera + " jada bozkatu duzu!",
+                            'mezua2' : "",
+                            }
+                        )
+            else:
+                bozkatzailea.gogokofilmak.add(filmAuk)
+                bozkatzailea.save()
+                filmAuk.bozkak = filmAuk.bozkak + 1 #Bozka kopurua eguneratzen da.
+                filmAuk.save()
+                return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
                     {
-                        'title' : "Register - Filmak",
+                        'title' : "Bozkatu - Filmak",
                         'filmak' : filmak,
-                        'mezua1' : aukera + " jada bozkatu duzu!",
-                        'mezua2' : "",
-                        'error' : e
-                        }
-                    )
-        
+                        'mezua1' : "Bozkaketa ongi burutu da",
+                        'mezua2' : "Zure bozka: " + aukera,
+                    }
+                )
+        else:
+            instance = Bozkatzailea.objects.create(erabiltzailea_id=erabiltzailea) #Bozkatzailea sortzen saiatzen da.
+            instance.gogokofilmak.add(filmAuk)
+            instance.save()
+            filmAuk.bozkak = filmAuk.bozkak + 1 #Bozka kopurua eguneratzen da.
+            filmAuk.save()
+            return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
+                {
+                    'title' : "Bozkatu - Filmak",
+                    'filmak' : filmak,
+                    'mezua1' : "Bozkaketa ongi burutu da",
+                    'mezua2' : "Zure bozka: " + aukera,
+                }
+            )
     else: #Form-a ez bada bete (orria lehen aldi kargatzean, adibidez), hemendik joango da.
         return render(request, "filmak/bozkatu.html",
                   {
