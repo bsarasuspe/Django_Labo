@@ -144,7 +144,7 @@ def bozkatu(request):
         aukera = request.POST['filmak']
         try:
             filmAuk = filmak.get(aukera)
-            erabiltzailea = request.session['user']
+            erabiltzailea = request.User
             Bozkatzailea.objects.create(erabiltzailea,filmAuk) #Bozkatzailea sortzen saiatzen da.
             filmAuk.bozkak++ #Bozka kopurua eguneratzen da.
             return render(request, "filmak/bozkatu.html", #Bozkaketa ongi egin da.
@@ -179,12 +179,12 @@ def bozkatu(request):
 
 @login_required(login_url='')
 def zaleak(request):
-
     filmak = Filma.objects.all()
     if request.method == 'POST': #Form-a bete bada hemendik joango da.
         aukera = request.POST['filmak']
         filmAuk = filmak.get(aukera)
         zaleak = Bozkatzailea.objects.all()
+
         return render(request, "filmak/zaleak.html",
                       {
                           'title' : "Register - Filmak",
