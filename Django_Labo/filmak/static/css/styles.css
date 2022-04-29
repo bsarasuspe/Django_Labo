@@ -1,0 +1,187 @@
+body {
+    background: #f3e5e5;
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+#header {
+    width: 100%;
+    height: 180px;
+    background-image: url('http://www.brunswickmoviebowl.com/wp-content/uploads/2016/06/movie-header.jpg');
+}
+
+#headertext {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding-top: 75px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#headertext a {
+    text-decoration: none;
+    color: white;
+}
+
+#nav {
+    width: 100%;
+    height: 48px;
+    background-color: #ad0303;
+    box-shadow: 0px 3px 7px #00000036;
+    border-bottom: 3px solid #741515;
+    margin-bottom: 30px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #741515;
+    }
+
+#hasierakutxa {
+    width: 177px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+}
+
+#loginkutxa {
+    width: 300px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+}
+
+#registerkutxa {
+    width: 400px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+}
+
+#filmakikusikutxa {
+    width: 1000px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+    margin-bottom:20px;
+}
+
+#bozkatukutxa {
+    width: 400px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+}
+
+#zaleakkutxa {
+    width: 400px;
+    color: #442727;
+    margin: auto;
+    background-color: #fffaf7;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #c1bbb8;
+}
+
+button {
+    background-color: #ad0303;
+    color: white;
+    padding: 8px;
+    border: 1px solid #911b1b;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: 8f0303;
+    }
+
+input[type=text], input[type=password], input[type=email], input[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #c6c0bc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+input[type="submit" i] {
+    background-color: #ad0303;
+    color: white;
+    padding: 8px;
+    border: 1px solid #911b1b;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width:100%;
+}
+
+    input[type="submit" i]:hover {
+        background-color: #8f0303;
+    }
+
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ad0303;
+    color: white;
+}

@@ -1,14 +1,32 @@
 <html>
 <head>
     <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    <center>
-        <h2>FILMEN GUNEA</h2>
-        <b>Ez zauda logeatuta</b><br/><br/>
-        <a href="{% url 'login' %}"><button type="button">Login</button></a>
-        <a href="{% url 'register' %}"><button type="button">Erregistratu</button></a>
-    </center
+
+    <div id="header">
+		<div id="headertext"><a href="index.php">FILMEN GUNEA</a></div>
+	</div>
+	<div id="nav">
+		<div style="width:1000px;margin:auto;">
+           <ul>
+		        <li><a href="{% url 'index' %}">Hasiera</a></li>
+               <li><a href="{% url 'login' %}">Login</a></li>
+               <li><a href="{% url 'register' %}">Erregistratu</a></li>
+           </ul>
+		</div>
+    </div>
+
+    <div id="hasierakutxa">
+        <center>
+            <h2>HASIERA</h2>
+            <b>Ez zaude logeatuta</b><br/><br/>
+            <a href="{% url 'login' %}"><button type="button">Login</button></a>
+            <a href="{% url 'register' %}"><button type="button">Erregistratu</button></a>
+        </center>
+    </div>
 </body>
 </html>

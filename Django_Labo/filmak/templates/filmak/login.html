@@ -1,19 +1,38 @@
 <html>
 <head>
     <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    <center>
-        <h2>LOGIN</h2>
+
+    <div id="header">
+		<div id="headertext"><a href="index.php">FILMEN GUNEA</a></div>
+	</div>
+	<div id="nav">
+		<div style="width:1000px;margin:auto;">
+           <ul>
+		        <li><a href="{% url 'index' %}">Hasiera</a></li>
+               <li><a href="{% url 'login' %}">Login</a></li>
+               <li><a href="{% url 'register' %}">Erregistratu</a></li>
+           </ul>
+		</div>
+    </div>
+
+    <div id="loginkutxa">
+            <center>
+        <h2>LOGIN</h2></center>
         <form action="" method="post">
             {% csrf_token %}
-            <b><label for="{{ form.erabiltzailea.id_for_label }}">Erabiltzailea: </label></b>{{form.erabiltzailea}}<br />
-            <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b>{{form.pasahitza}}<br /><br />
+            <b><label for="{{ form.erabiltzailea.id_for_label }}">Erabiltzailea: </label></b><br />{{form.erabiltzailea}}<br />
+            <b><label for="{{ form.pasahitza.id_for_label }}">Pasahitza: </label></b><br />{{form.pasahitza}}
             <input type="submit" value="Logeatu">
         </form>
         <p style="color:red;"><b>{{message}}</b></p>
         Konturik ez baduzu, erregistratu zaitez <a href="{% url 'register' %}">hemen</a>.
-    </center>
+    
+    </div>
+
 </body>
 </html>

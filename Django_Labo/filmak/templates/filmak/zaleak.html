@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
-    <h1 style="color:green">Zaleak</h1>
+
+    <div id="header">
+		<div id="headertext"><a href="index.php">FILMEN GUNEA</a></div>
+	</div>
+	<div id="nav">
+		<div style="width:1000px;margin:auto;">
+           <ul>
+		        <li><a href="{% url 'filmakIkusi' %}">Filmak ikusi</a></li>
+               <li><a href="{% url 'bozkatu' %}">Bozkatu</a></li>
+               <li><a href="{% url 'zaleak' %}">Zaleak</a></li>
+               <li><a href="{% url 'logout' %}">Atera saiotik</a></li>
+           </ul>
+		</div>
+    </div>
+    <div id="zaleakkutxa">
+            <center><h2>Zaleak</h2></center>
     <form action="" method="post">
         {% csrf_token %}
         <select name="filmak" id="filmak">
@@ -19,10 +35,12 @@
     <b>{{mezua}}</b><br />
 
     <table id="zaleTaula">
-        <tr><td>Zaleak</td></tr>
+        <tr><th>Zaleak</th></tr>
         {% for zalea in content %}
         <tr><td>{{ zalea.erabiltzailea_id.username }}</td></tr>
         {% endfor %}
     </table>
+    </div>
+
 </body>
 </html>

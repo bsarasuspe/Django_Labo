@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8" />
     <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
-    <h1 style="color:green">Filmak ikusi</h1>
+
+    <div id="header">
+		<div id="headertext"><a href="index.php">FILMEN GUNEA</a></div>
+	</div>
+	<div id="nav">
+		<div style="width:1000px;margin:auto;">
+           <ul>
+		        <li><a href="{% url 'filmakIkusi' %}">Filmak ikusi</a></li>
+               <li><a href="{% url 'bozkatu' %}">Bozkatu</a></li>
+               <li><a href="{% url 'zaleak' %}">Zaleak</a></li>
+               <li><a href="{% url 'logout' %}">Atera saiotik</a></li>
+           </ul>
+		</div>
+    </div>
+    <div id="filmakikusikutxa">
+           <center><h2>Filmak ikusi</h2></center> 
 
     <table id="filmTaula">
-        <tr><td>Izenburua</td><td>Zuzendaria</td><td>Urtea</td><td>Generoa</td><td>Sinopsia</td><td>Bozkak</td></tr>
+        <tr><th>Izenburua</th><th>Zuzendaria</th><th>Urtea</th><th>Generoa</th><th>Sinopsia</th><th>Bozkak</th></tr>
         {% for film in content %}
         <tr><td>{{ film.izenburua }}</td><td>{{ film.zuzendaria }}</td><td>{{ film.urtea }}</td><td>{{ film.generoa }}</td><td>{{ film.sinopsia }}</td><td>{{ film.bozkak }}</td></tr>
         {% endfor %}
@@ -28,5 +44,7 @@
             {% endif %}
         </span>
     </div>
+    </div>
+
 </body>
 </html>

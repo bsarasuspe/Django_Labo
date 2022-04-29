@@ -47,6 +47,7 @@
     <Compile Include="Django_Labo\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="filmak\static\css\styles.css" />
     <Content Include="filmak\templates\filmak\bozkatu.html" />
     <Content Include="filmak\templates\filmak\index.html" />
     <Content Include="filmak\templates\filmak\login.html" />
@@ -60,6 +61,8 @@
     <Folder Include="Django_Labo\" />
     <Folder Include="filmak\" />
     <Folder Include="filmak\migrations\" />
+    <Folder Include="filmak\static\" />
+    <Folder Include="filmak\static\css\" />
     <Folder Include="filmak\templates\" />
     <Folder Include="filmak\templates\filmak\" />
   </ItemGroup>
